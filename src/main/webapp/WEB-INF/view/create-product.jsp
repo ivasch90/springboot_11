@@ -10,9 +10,9 @@
 <body>
 <%--@elvariable id="product" type="ru.gb.spring1.entity"--%>
 <form:form action="create" modelAttribute="product">
-Product Name: <form:input path="name"/>
+Product Title: <form:input path="title"/>
 <br>
-Cost: <form:input path="cost"/>
+Product Cost: <form:input path="cost"/>
 <br>
 <input type="submit" value="Save"/>
 </form:form>

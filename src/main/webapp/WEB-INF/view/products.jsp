@@ -11,13 +11,13 @@
 <h1>Product list: </h1>
 <ul>
     <c:forEach var="product" items="${productList}">
-        <%--<c:url var="viewUrl" value="/products/ + ${product.id}"/>--%>
+        <c:url var="viewUrl" value="/products/ + ${product.id}"/>
     <li>
         <a href="${viewUrl}"value=View</a>
         <br>
-        Product name: ${product.name}
+        Product title: ${product.title}
         <br>
-        Cost: ${product.cost}
+        <%--Cost: ${product.cost}--%>
         <br>
     </li>
     </c:forEach>
