@@ -1,12 +1,15 @@
 package ru.gb.springboot_1.dao.product;
 
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.gb.springboot_1.entity.Product;
 
-public interface ProductDao {
-    Iterable<Product> findAll();
-    Product findById(Long id);
-    String findNameById(Long id);
-    void insert(Product product);
-    Product save(Product product);
-    void deleteById(Long id);
+
+
+public interface ProductDao extends JpaRepository<Product, Long> {
+    //List<Product> findAllByCostOrderByCost(Sort. Direction direction);
+    //List<Product> findAllByCostOrderByCostDesc(Sort direction);
+
+
+
 }

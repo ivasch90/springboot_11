@@ -2,37 +2,51 @@ package ru.gb.springboot_1.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.gb.springboot_1.dao.product.JpaProductDao;
+import ru.gb.springboot_1.dao.product.ProductDao;
 import ru.gb.springboot_1.entity.Product;
-import ru.gb.springboot_1.repository.ProductRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+
+import static org.springframework.data.domain.Sort.Direction.DESC;
+
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-    //private final ProductRepository productRepository;
-    private final JpaProductDao jpaProductDao;
+
+    private final ProductDao productDao;
+    private Sort sort;
 
 
     public Product save(Product product) {
-        return jpaProductDao.save(product);
+        return productDao.save(product);
     }
 
     public Product findById(Long id) {
-        return jpaProductDao.findById(id);
+        return productDao.findById(id).get();
     }
 
     public List<Product> findAll() {
-        return (List<Product>) jpaProductDao.findAll();
+        return productDao.findAll();
     }
 
-
     public void deleteById(Long id) {
-        jpaProductDao.deleteById(id);
+        productDao.deleteById(id);
 
+    }
+
+    public List<Product> findAllSortedByCost(String sortName) {
+        List<Product> allSortedByCost;
+
+        if (sortName.equals("asc")) {
+            allSortedByCost = productDao.findAll(Sort.by(Sort.Direction.ASC, "cost"));
+        } else {
+            allSortedByCost = productDao.findAll(Sort.by(DESC, "cost"));
+        }
+
+        return allSortedByCost;
     }
 }
