@@ -35,9 +35,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/all")
-    public String getAllProduct(Model model) {
-        model.addAttribute("productList", productService.findAll());
-        return "products";
+    public String getAllProduct(Model model, @RequestParam(value = "direction", required = false) String direction) {
+        if (direction != null) {
+            model.addAttribute("productList", productService.findAllSortedByCost(direction));
+        } else {
+            model.addAttribute("productList", productService.findAll());
+        }
+            return "products";
     }
 
     @GetMapping(path = "/products/{id}")

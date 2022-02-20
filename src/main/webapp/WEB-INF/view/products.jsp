@@ -9,6 +9,12 @@
 <body>
 <%--@elvariable id="productList" type="ru.gb.spring1.controller"--%>
 <h1>Product list: </h1>
+<c:url var="sortBy" value="/products/all">
+    <c:param name="direction"/>
+</c:url>
+<p>Sort by Cost: </p>
+<a href="/products/all?direction=asc">ASC</a>
+<a href="/products/all?direction=desc">DESK</a>
 <ul>
     <c:forEach var="product" items="${productList}">
         <c:url var="viewUrl" value="/products/ + ${product.id}"/>
@@ -17,7 +23,7 @@
         <br>
         Product title: ${product.title}
         <br>
-        <%--Cost: ${product.cost}--%>
+        Cost: ${product.cost}
         <br>
     </li>
     </c:forEach>
