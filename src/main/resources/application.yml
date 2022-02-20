@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    username: 'geek'
+    password: 'geek'
+    url: 'jdbc:postgresql://localhost:5432/gb_shop'
+    driver-class-name: 'org.postgresql.Driver'
+
+spring.mvc.view:
+  prefix: '/WEB-INF/view/'
+  suffix: '.jsp'
